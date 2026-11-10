@@ -2,8 +2,8 @@
 <html lang="ca">
 <head>
 <meta charset="utf-8">
-<meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
 <title>Menjador en 3D</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap">
@@ -71,7 +71,6 @@ table{border-collapse:collapse;width:100%;min-width:400px}
 th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 th{font:600 .78rem var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
-
 #gate{position:fixed;inset:0;z-index:50;background:var(--bg);display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-left,0px))}
 #gate form{display:grid;gap:12px;width:min(340px,100%);text-align:center}
 #gate input{font:16px var(--body);padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}
@@ -117,6 +116,11 @@ if(ok){try{localStorage.setItem("menjador-ok","1")}catch(_){}document.documentEl
       <button data-mood="day" aria-pressed="true">Dia</button>
       <button data-mood="night" aria-pressed="false">Vespre</button>
     </div>
+    <div class="group" role="group" aria-label="Televisor">
+      <span class="lbl">TV</span>
+      <button data-tv="lg" aria-pressed="true">LG OLED 42"</button>
+      <button data-tv="tcl" aria-pressed="false">TCL 43"</button>
+    </div>
     <div class="group" role="group" aria-label="Moble seleccionat">
       <span class="lbl" id="selname">Cap moble</span>
       <button id="r90" disabled>Gira 90°</button>
@@ -133,6 +137,7 @@ if(ok){try{localStorage.setItem("menjador-ok","1")}catch(_){}document.documentEl
       <span class="chip" id="hAng">Angle TV–foc <b>–</b></span>
       <span class="chip" id="hTv">Sofà→TV <b>–</b></span>
       <span class="chip" id="hFire">Sofà→foc <b>–</b></span>
+      <span class="chip" id="hModel" hidden>TV <b>–</b></span>
     </div>
     <div id="err" hidden>No s'ha pogut carregar el motor 3D. Torna a carregar la pàgina.</div>
   </div>
@@ -198,6 +203,9 @@ const RW=380,RD=570,WH=260;
 const BOX={x0:282,x1:380,z0:530,z1:634,niche:20};
 const FIRE={x:BOX.x0+15+29,z:BOX.z0};
 const BEAM={x:195,z:340};
+// TVs still in the running (dimensions without stand, cm)
+const TVM={lg:{label:'LG OLED C5 42"',w:93.2,h:54.0,d:4.1,bezel:.6},tcl:{label:"TCL 43P7K",w:95.6,h:55.9,d:7.2,bezel:1.0,chin:1.2}};
+let tvSel="lg";
 const PI=Math.PI,D2R=PI/180;
 
 const canvas=document.getElementById("c");
@@ -392,8 +400,11 @@ const B={
   tv(g){box(g,97,56,3.5,mat(0x111111,{roughness:.3}),0,92+28,0);box(g,93,52,.6,mat(0x0e1418,{roughness:.08,metalness:.3}),0,92+28,1.9);
     box(g,6,10,3,0x151515,0,88,0);rbox(g,32,1.4,20,.6,0x202020,0,82.5,0);
     return{w:97,d:20};},
-  tvWall(g){box(g,97,56,3.5,mat(0x111111,{roughness:.3}),0,0,4);box(g,93,52,.6,mat(0x0e1418,{roughness:.08,metalness:.3}),0,0,6.1);
-    box(g,40,30,3,0x1a1a1a,0,0,1.2);return{w:97,d:8};},
+  tvWall(g){const m=TVM[tvSel],b=m.bezel;
+    box(g,30,20,1.5,0x1a1a1a,0,0,1.2);                                            // wall bracket
+    box(g,m.w,m.h,m.d,mat(0x111111,{roughness:.3}),0,0,2+m.d/2);                  // body
+    box(g,m.w-2*b,m.h-2*b-(m.chin||0),.4,mat(0x0e1418,{roughness:.08,metalness:.3}),0,(m.chin||0)/2,2+m.d+.2); // screen
+    return{w:m.w,d:m.d+2};},
   shelf(g,it){rbox(g,100,5,20,1.2,mat(0x6a4526,{roughness:.6}),0,0,10);
     if(it.decor){[[-42,9],[-36,6]].forEach(c=>{cyl(g,2.6,2.6,c[1],0xf6f1e6,c[0],2.5+c[1]/2,12);const f=add(g,new THREE.SphereGeometry(.8,8,6),mat(0xffc060,{emissive:0xffa030,emissiveIntensity:2}),c[0],2.5+c[1]+1.2,12);f.scale.set(1,1.8,1);});
       add(g,new THREE.LatheGeometry([[0,0],[3.5,0],[4.5,4],[2,9],[1.4,11]].map(a=>new THREE.Vector2(a[0],a[1])),16),mat(0x6e7144,{roughness:.4}),40,2.5,11);
@@ -574,6 +585,8 @@ function buildLayout(name,fresh){
   document.querySelectorAll("[data-layout]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.layout===name));
   if(view==="sofa")setView("sofa");
 }
+document.querySelectorAll("[data-tv]").forEach(b=>b.onclick=()=>{tvSel=b.dataset.tv;
+  document.querySelectorAll("[data-tv]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.tv===tvSel));buildLayout(layoutName);});
 let night=false,fireBase=1.1;
 function applyMood(){hemi.intensity=night?.06:.6;sun.intensity=night?0:.55;beamLight.intensity=night?.7:.8;fireBase=night?1.5:1.1;
   renderer.toneMappingExposure=night?.8:.95;objGroup.traverse(o=>{if(o.isPointLight)o.intensity=o.userData.base*(night?1.5:1);});
@@ -607,6 +620,10 @@ function update(){
   const dist=(a,b)=>(Math.hypot(a.x-b.x,a.z-b.z)/100).toFixed(1).replace(".",",")+" m";
   document.getElementById("hTv").innerHTML="Sofà→TV <b>"+dist(seat,t)+"</b>";
   document.getElementById("hFire").innerHTML="Sofà→foc <b>"+dist(seat,f)+"</b>";
+  const hm=document.getElementById("hModel");
+  if(t.type==="tvWall"){const m=TVM[tvSel];hm.hidden=false;
+    hm.innerHTML=m.label+" <b>"+String(m.w).replace(".",",")+" cm · sobresurt "+((m.w-78)/2).toFixed(1).replace(".",",")+" cm/costat</b>";}
+  else hm.hidden=true;
 }
 
 const ray=new THREE.Raycaster(),ndc=new THREE.Vector2(),groundPlane=new THREE.Plane(new THREE.Vector3(0,1,0),0);
