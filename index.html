@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Pla de decoració del menjador</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+/* Layout: one reading column with a sticky contents rail on wide screens; tables scroll inside their own box on phones */
+:root{
+  --bg:#f7f4ef; --surface:#ffffff; --fg:#2a241f; --muted:#6f655b; --line:#e2dbd1;
+  --clay:#b4562f; --olive:#6e7144; --sand:#d6c4a3; --walnut:#4e2a12; --linen:#e7dccb;
+  --ok:#2f7d4f; --warn:#a06a0c; --bad:#b23b2a;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1c1915; --surface:#25211c; --fg:#efe9e1; --muted:#a99f93; --line:#3a342d;
+  --clay:#d9764d; --olive:#a5a974; --sand:#cbb48d; --walnut:#c08a5c; --linen:#4a4136;
+  --ok:#5fbf86; --warn:#e0ad45; --bad:#ec7a68; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1915; --surface:#25211c; --fg:#efe9e1; --muted:#a99f93; --line:#3a342d;
+  --clay:#d9764d; --olive:#a5a974; --sand:#cbb48d; --walnut:#c08a5c; --linen:#4a4136;
+  --ok:#5fbf86; --warn:#e0ad45; --bad:#ec7a68; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:17px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 80px}
+.wrap{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:200px minmax(0,1fr);gap:48px}
+@media (max-width:860px){.wrap{grid-template-columns:1fr}.toc{display:none}}
+.toc{position:sticky;top:24px;align-self:start;display:grid;gap:6px;font-size:.9rem}
+.toc a{color:var(--muted);text-decoration:none}.toc a:hover{color:var(--clay)}
+@media (max-width:860px){.toc{display:none}h1{font-size:2rem}body{font-size:16px}}
+main{display:grid;gap:56px;min-width:0}
+h1,h2,h3{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:2.6rem;letter-spacing:-.01em}
+h2{font-size:1.7rem}
+h3{font-size:1.15rem;font-weight:500}
+p{margin:0;max-width:66ch}
+a{color:var(--clay)}
+.eyebrow{font:600 .75rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:1.15rem;color:var(--muted);margin-top:12px;max-width:62ch}
+section{display:grid;gap:18px;scroll-margin-top:24px}
+ul,ol{margin:0;padding-left:1.25em;display:grid;gap:8px;max-width:70ch}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.sw{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.sw i{display:block;height:64px}
+.sw div{padding:8px 10px;font-size:.85rem;display:grid;gap:2px}
+.sw b{font-weight:600}
+.sw span{color:var(--muted)}
+.zone{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.zone>div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:10px;align-content:start}
+.callout{border-left:4px solid var(--clay);background:var(--surface);padding:14px 18px;border-radius:0 8px 8px 0;display:grid;gap:6px}
+.callout.warn{border-color:var(--warn)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:.93rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 .75rem var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tr.sub td{background:var(--bg);font-weight:600}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.tag{display:inline-block;font:600 .72rem var(--body);padding:2px 7px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.v{color:var(--ok)} .p{color:var(--warn)} .n{color:var(--muted)}
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:6px;align-content:start}
+.phase .amt{font:500 1.6rem var(--display)}
+.phase .amt small{font:400 .85rem var(--body);color:var(--muted)}
+.note{color:var(--muted);font-size:.93rem}
+.cta{display:inline-block;background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600;width:max-content}
+@media (max-width:640px){
+  .tablewrap{overflow:visible;border:0;background:none;border-radius:0}
+  table{min-width:0;font-size:.95rem}
+  thead{display:none}
+  tbody{display:grid;gap:8px}
+  tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+  td{border:0;padding:0;min-width:0}
+  tr.sub{display:block;background:none;border:0;padding:14px 0 2px}
+  tr.sub td{background:none;font:700 1.1rem var(--display)}
+  table.shop td:nth-child(1){font-weight:600;grid-column:1;grid-row:1}
+  table.shop td.num{grid-column:2;grid-row:1}
+  table.shop td:nth-child(2){grid-column:1/-1}
+  table.shop td:nth-child(3){grid-column:1;color:var(--muted);font-size:.85rem}
+  table.shop td:nth-child(5){grid-column:2;text-align:right}
+  table.tvs tr{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  table.tvs td:first-child{grid-column:1/-1;font:700 1.05rem var(--display)}
+  table.tvs td:not(:first-child)::before{content:attr(data-label);display:block;font:600 .7rem var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  table.prov tr{grid-template-columns:minmax(0,1fr)}
+  table.prov td:nth-child(1){font-weight:600}
+  table.prov td:nth-child(2){color:var(--muted);font-size:.85rem}
+}
+
+#gate{position:fixed;inset:0;z-index:50;background:var(--bg);display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-left,0px))}
+#gate form{display:grid;gap:12px;width:min(340px,100%);text-align:center}
+#gate input{font:16px var(--body);padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}
+#gate button{font:600 1rem var(--body);padding:12px;border:0;border-radius:8px;background:var(--fg);color:var(--bg);cursor:pointer}
+#gate .err{color:#b23b2a;font-size:.9rem;min-height:1.2em}
+html.locked body>*:not(#gate){visibility:hidden}
+html:not(.locked) #gate{display:none}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add("locked");try{if(localStorage.getItem("menjador-ok")==="1")document.documentElement.classList.remove("locked")}catch(e){}</script>
+<div id="gate"><form id="gateForm" autocomplete="off"><strong style="font-size:1.2rem">Menjador</strong><label for="gatePw">Contrasenya</label><input id="gatePw" type="password" autocomplete="current-password"><button type="submit">Entra</button><div class="err" id="gateErr" aria-live="polite"></div></form></div>
+<script>(function(){const H="23ece9fa068a08c46426fb8370b33a6409d7c335f0676ffbd939edb82d1561d9";const f=document.getElementById("gateForm");
+async function h(t){const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return [...new Uint8Array(d)].map(b=>b.toString(16).padStart(2,"0")).join("")}
+f.addEventListener("submit",async e=>{e.preventDefault();const v=document.getElementById("gatePw").value.trim();let ok=false;try{ok=(window.crypto&&crypto.subtle)?(await h(v))===H:btoa(v)==="SGFiaWJp"}catch(_){try{ok=btoa(v)==="SGFiaWJp"}catch(__){ok=false}}
+if(ok){try{localStorage.setItem("menjador-ok","1")}catch(_){}document.documentElement.classList.remove("locked");window.dispatchEvent(new Event("resize"))}else{document.getElementById("gateErr").textContent="Contrasenya incorrecta."}})})();</script>
+
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contingut">
+    <span class="eyebrow">Contingut</span>
+    <a href="#concepte">Concepte</a>
+    <a href="#paleta">Paleta i materials</a>
+    <a href="#treure">Què treure (0 €)</a>
+    <a href="#sofa">Zona sofà</a>
+    <a href="#foc">Llar de foc i TV</a>
+    <a href="#tele">Quina TV</a>
+    <a href="#taula">Zona menjador</a>
+    <a href="#llum">Il·luminació</a>
+    <a href="#parets">Parets</a>
+    <a href="#plantes">Plantes i gat</a>
+    <a href="#restaurar">Restaurar el que teniu</a>
+    <a href="#vidres">Vidres a mida</a>
+    <a href="#proveidors">Proveïdors a Girona</a>
+    <a href="#compra">Llista de compra</a>
+    <a href="#fases">Pressupost per fases</a>
+    <a href="#ordre">Ordre de feina</a>
+  </nav>
+
+  <main>
+    <header>
+      <p class="eyebrow">Menjador · distribució «TV sobre la llar» · novembre 2026</p>
+      <h1>Pla de decoració del menjador</h1>
+      <p class="lede">Els mobles que teniu són bons i tenen caràcter: noguera, reixeta, vellut i terratzo. El problema no són els mobles, sinó que no acaben de lligar entre ells, que no hi ha textils ni llum càlida, i que hi ha massa objectes solts. Aquest pla no canvia cap moble. Afegeix capes per fer lligar el que ja teniu.</p>
+      <p style="margin-top:16px"><a class="cta" href="menjador3d.html">Veure-ho en 3D</a></p>
+    </header>
+
+    <section id="concepte">
+      <h2>Concepte: mediterrani càlid</h2>
+      <p>La direcció és la d'una casa de poble mediterrània actualitzada: fusta fosca, fibres naturals, lli i un parell de colors de terra. La noguera de l'aparador i el marc fosc de les portes es mantenen: són l'ancoratge. Tot el que s'afegeix va en tons sorra, argila i oliva, i el negre queda per a la TV, el mirall i la llar de foc.</p>
+      <ul>
+        <li><strong>Un sol punt focal:</strong> la xemeneia amb la TV. El caixó es pinta en un to argila clar i tota la zona de sofà mira cap allà.</li>
+        <li><strong>Tres textures que es repeteixen</strong> a cada zona: lli, fibra natural i fusta.</li>
+        <li><strong>Llum càlida a tres alçades:</strong> sostre (biga), mitja alçada (llum de peu i de taula) i baixa (foc i espelmes).</li>
+        <li><strong>Menys objectes, més grans:</strong> poques plantes però grans en lloc de moltes de petites, i quadres de 50 × 70 en lloc de fotos soltes.</li>
+      </ul>
+    </section>
+
+    <section id="paleta">
+      <h2>Paleta i materials</h2>
+      <div class="swatches">
+        <div class="sw"><i style="background:#f2efe9"></i><div><b>Blanc trencat</b><span>Parets (es queden)</span></div></div>
+        <div class="sw"><i style="background:#d8b89a"></i><div><b>Argila clara</b><span>Caixó de la xemeneia</span></div></div>
+        <div class="sw"><i style="background:#d6c4a3"></i><div><b>Sorra</b><span>Funda del sofà</span></div></div>
+        <div class="sw"><i style="background:#e7dccb"></i><div><b>Lli natural</b><span>Camí de taula, coixins de cadira</span></div></div>
+        <div class="sw"><i style="background:#b4562f"></i><div><b>Terracota</b><span>Coixins, manta</span></div></div>
+        <div class="sw"><i style="background:#6e7144"></i><div><b>Oliva</b><span>Butaca, coixí, gerros</span></div></div>
+        <div class="sw"><i style="background:#4e2a12"></i><div><b>Noguera</b><span>Aparador, portes (es queden)</span></div></div>
+        <div class="sw"><i style="background:#1d1d1d"></i><div><b>Negre</b><span>TV, mirall, llar de foc</span></div></div>
+      </div>
+      <p class="note">La regla és mantenir sempre la proporció 60/30/10. El 60 % són tons clars (parets, sofà i catifa), el 30 % fusta (aparador, taula i cadires) i el 10 % color (terracota i oliva). El taronja de les estovalles de quadres i el blau dels coixins actuals trenquen aquesta proporció.</p>
+    </section>
+
+    <section id="treure">
+      <h2>Primer, treure (0 €)</h2>
+      <p>És el que més canvi fa i no costa res. Feu-ho abans de comprar res: potser després necessitareu menys coses.</p>
+      <ul>
+        <li><strong>Cadires: de 8 a 6.</strong> Les dues que sobren, a una altra habitació o guardades per quan vinguin convidats.</li>
+        <li><strong>Penjador de jaquetes, al passadís.</strong> Ara és a la paret del menjador i hi deixa roba a la vista. On era hi va el mirall.</li>
+        <li><strong>Joguines i coixins de peluix del sofà</strong> (la pilota, l'ànec), a l'habitació. Al sofà, només coixins de la paleta.</li>
+        <li><strong>Regleta i cables</strong> de damunt de l'aparador: a dins d'un calaix o d'una caixa, o pel darrere.</li>
+        <li><strong>Fotos de l'aparador:</strong> trieu-ne 3 o 4 amb marcs iguals i poseu-les juntes a sobre de la vitrina. La resta, en un àlbum o a una altra paret.</li>
+        <li><strong>Estovalles de quadres:</strong> fora del dia a dia. La fusta de la taula és bonica i es pot deixar a la vista amb un camí de taula.</li>
+        <li><strong>Caixa de llenya:</strong> substituir-la per un cistell (vegeu la llista).</li>
+        <li><strong>Planta de la taula:</strong> sembla un pòtos. Si ho és, és tòxic per als gats segons l'ASPCA. Poseu-la on el gat no hi arribi o regaleu-la.</li>
+      </ul>
+    </section>
+
+    <section id="sofa">
+      <h2>Zona sofà</h2>
+      <div class="zone">
+        <div>
+          <h3>Sofà</h3>
+          <ul>
+            <li>Funda elàstica en <strong>color sorra</strong> en lloc de la tela blanca. Fa el sofà més net i aguanta millor el pèl del gat.</li>
+            <li><strong>Mesureu-lo de braç a braç.</strong> Si fa 230 cm, està al límit de les fundes de 190–230 cm i s'han de buscar talla XL.</li>
+            <li>Coixins: <strong>2 terracota, 1 oliva, 1 lli</strong> a 50 × 50, més un de rectangular mostassa al centre.</li>
+            <li>Manta de llana sobre el braç dret, el que dona a la llar de foc.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Catifa</h3>
+          <ul>
+            <li><strong>160 × 230 de pèl curt, en color os.</strong> Va sota la tauleta i entra uns 20 cm sota les potes davanteres del sofà, per unir-los.</li>
+            <li><strong>Res de bucles ni de iute</strong> amb el gat: els bucles s'enganxen a les ungles i el iute el fa servir de rascador.</li>
+            <li>Amb una base antilliscant a sota.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tauleta i butaca</h3>
+          <ul>
+            <li>La tauleta de palets es queda però <strong>es refina</strong>: llijar-la i passar-hi oli. A sobre, una safata rodona de fusta amb 3 espelmes i dos llibres.</li>
+            <li>La butaca de vellut es queda: <strong>l'oliva és un dels colors de la paleta</strong>. Al seu costat, una tauleta auxiliar petita per deixar-hi el cafè.</li>
+            <li>El rascador del gat queda darrere del sofà, a prop de la finestra del fons.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="foc">
+      <h2>Llar de foc i TV</h2>
+      <div class="zone">
+        <div>
+          <h3>Abans de tot</h3>
+          <ul>
+            <li><strong>Revisió i neteja de la xemeneia</strong> per un professional. La taca de sutge indica que l'aire o el fum s'escapen per dalt.</li>
+            <li><strong>Mesurar la temperatura</strong> de la paret amb el foc encès, a l'alçada on aniria la TV, amb un termòmetre d'infrarojos.</li>
+            <li><strong>Consultar el manual de l'insert:</strong> quina distància mínima demana fins a un material combustible. El prestatge de fusta ho és.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Caixó pintat</h3>
+          <ul>
+            <li>Netejar el sutge, una mà d'<strong>imprimació antitaques</strong> i dues mans de pintura mat en <strong>argila clara</strong>.</li>
+            <li>Només el caixó, de terra a sostre. La resta de parets es queden blanques.</li>
+            <li>Amb això la xemeneia passa a ser el punt focal i la TV negra hi destaca menys.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Prestatge i TV</h3>
+          <ul>
+            <li>Prestatge de fusta massissa de <strong>100–120 × 20 cm</strong> amb suports ocults, tenyit del to de la noguera. Fa de deflector de calor.</li>
+            <li>A sobre, poca cosa: dues espelmes a un costat i un gerro oliva amb branques a l'altre.</li>
+            <li>La TV, amb un <strong>suport inclinable</strong>, el centre a uns 145 cm de terra i lleugerament inclinada avall.</li>
+            <li>El cable baixa per una canaleta pintada del color del caixó.</li>
+            <li>Cistell de rotang per a la llenya a l'esquerra del foc.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout warn">
+        <strong>Si la paret supera els 35–40 °C, o el manual de l'insert no permet el prestatge, no pengeu la TV a sobre.</strong>
+        <span>Aleshores cal tornar a la distribució «Sofà davant del foc», amb la TV en un moble baix al costat del caixó. La resta del pla serveix igual.</span>
+      </div>
+    </section>
+
+    <section id="tele">
+      <h2>Quina TV</h2>
+      <p>Abans de comprar la TV, <strong>mesureu la temperatura de la paret</strong> amb el foc encès. Samsung recomana no penjar una TV on l'aire superi els 40 °C, i amb llenya la cendra pot embrutar la pantalla i les reixetes (<a href="https://www.samsung.com/us/support/answer/ANS10006945" target="_blank" rel="noopener">guia de Samsung</a>). Si la paret s'escalfa massa, qualsevol d'aquestes TV pot anar en un moble baix.</p>
+      <ul>
+        <li><strong>Mida:</strong> el caixó fa 78 cm d'ample. Una TV de 42–43" fa uns 95 cm i sobresurt uns 9 cm per cada costat; queda proporcionada. Una de 50" fa uns 112 cm i sobresurt 17 cm per costat; es veu més gran des de 2,1 m, però domina la xemeneia.</li>
+        <li><strong>Angle de visió:</strong> la TV queda una mica per sobre dels ulls. Com més bon angle de visió tingui el panell, millor (l'OLED és el millor; el QLED i el LED, correctes).</li>
+        <li><strong>Suport:</strong> totes, menys The Frame, porten forats VESA estàndard. Un suport inclinable fi com el <a href="https://www.pccomponentes.com/soporte-de-pared-goobay-49731-para-tv-32-55-inclinable-hasta-35-kg" target="_blank" rel="noopener">Goobay 49731</a> (13,86 €, fins a 35 kg, inclinació de 0 a 8°, a 2 cm de la paret) serveix per a totes. Comproveu el patró VESA de la que trieu abans de comprar-lo.</li>
+      </ul>
+      <div class="tablewrap">
+        <table class="tvs">
+          <thead><tr><th>Model</th><th>Mida</th><th>Amplada</th><th>Sobresurt del caixó</th><th>Gruix</th><th>Pes</th><th>Panell</th><th>Sistema</th><th>Forats VESA</th><th>Preu</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Model">Hisense 43E7Q</td><td data-label="Mida">43"</td><td data-label="Amplada">96,3 cm</td><td data-label="Sobresurt">9 cm per costat</td><td data-label="Gruix">7,4 cm</td><td data-label="Pes">6,8 kg</td><td data-label="Panell">QLED</td><td data-label="Sistema">VIDAA</td><td data-label="VESA">200 × 300 *</td><td data-label="Preu">≈ 320 €</td></tr>
+            <tr><td data-label="Model">Samsung Q7F 43"</td><td data-label="Mida">43"</td><td data-label="Amplada">96,8 cm</td><td data-label="Sobresurt">9 cm per costat</td><td data-label="Gruix">6,0 cm</td><td data-label="Pes">7,1 kg</td><td data-label="Panell">QLED</td><td data-label="Sistema">Tizen</td><td data-label="VESA">200 × 200</td><td data-label="Preu">362,99 €</td></tr>
+            <tr><td data-label="Model">Philips 50PUS8010</td><td data-label="Mida">50"</td><td data-label="Amplada">111,0 cm</td><td data-label="Sobresurt">16,5 cm per costat</td><td data-label="Gruix">8,8 cm</td><td data-label="Pes">8,5 kg</td><td data-label="Panell">LED + Ambilight</td><td data-label="Sistema">Titan OS</td><td data-label="VESA">200 × 100</td><td data-label="Preu">≈ 300 €</td></tr>
+            <tr><td data-label="Model">Samsung Q8F 50"</td><td data-label="Mida">50"</td><td data-label="Amplada">111,8 cm</td><td data-label="Sobresurt">17 cm per costat</td><td data-label="Gruix">2,6 cm</td><td data-label="Pes">10,8 kg</td><td data-label="Panell">QLED</td><td data-label="Sistema">Tizen</td><td data-label="VESA">200 × 200</td><td data-label="Preu">459,59 €</td></tr>
+            <tr><td data-label="Model">LG OLED C5 42"</td><td data-label="Mida">42"</td><td data-label="Amplada">93,2 cm</td><td data-label="Sobresurt">7,6 cm per costat</td><td data-label="Gruix">4,1 cm</td><td data-label="Pes">9,8 kg</td><td data-label="Panell">OLED</td><td data-label="Sistema">webOS</td><td data-label="VESA">300 × 200</td><td data-label="Preu">≈ 720–850 €</td></tr>
+            <tr><td data-label="Model">Samsung The Frame 43"</td><td data-label="Mida">43"</td><td data-label="Amplada">97,0 cm</td><td data-label="Sobresurt">9,5 cm per costat</td><td data-label="Gruix">2,5 cm</td><td data-label="Pes">8,6 kg</td><td data-label="Panell">QLED mat</td><td data-label="Sistema">Tizen</td><td data-label="VESA">200 × 200 (porta suport propi)</td><td data-label="Preu">≈ 770 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">El caixó fa 78 cm d'ample. «Sobresurt» és el que queda fora del caixó per cada costat: (amplada de la TV − 78) ÷ 2. Totes tenen forats VESA. * Les dades de la Hisense són de fitxes de tercers i no coincideixen del tot entre elles: confirmeu el patró al manual. El suport Goobay 49731 accepta patrons fins a 400 × 400; comproveu a la fitxa que també admet el de la TV triada (200 × 100 a la Philips, 300 × 200 a la LG).</p>
+      <div class="zone">
+        <div>
+          <h3>QLED o LED amb Ambilight</h3>
+          <ul>
+            <li><strong>QLED</strong> és un LED amb una capa extra que fa els colors més vius i la imatge més brillant. Es nota sobretot de dia i amb continguts en HDR.</li>
+            <li><strong>LED amb Ambilight</strong> té colors una mica més apagats, però il·lumina la paret del darrere amb els colors de la imatge. De vespre, la pantalla sembla més gran i cansa menys la vista.</li>
+            <li>Per veure la TV sobretot de vespre, la diferència de qualitat és petita. No és «molt millor»: és una mica millor de color, i l'Ambilight és un extra d'ambient.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Els sistemes (menús i aplicacions)</h3>
+          <ul>
+            <li><strong>Tizen</strong> (Samsung): molt complet i ràpid. És el més estès després de Google TV.</li>
+            <li><strong>webOS</strong> (LG): molt complet, amb un comandament que fa de punter. Al nivell de Tizen.</li>
+            <li><strong>VIDAA</strong> (Hisense): senzill i ràpid, amb les aplicacions principals. En té menys que Tizen i webOS.</li>
+            <li><strong>Titan OS</strong> (Philips): és nou, de 2024. Té les aplicacions principals, però té menys recorregut i menys catàleg.</li>
+            <li>Totes porten Netflix, YouTube, Prime Video i Disney+. Abans de comprar, comproveu a la botiga si hi ha les altres que feu servir, com 3Cat, Movistar Plus+ o DAZN. No he pogut confirmar-ho per a cada sistema.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="zone">
+        <div>
+          <span class="eyebrow">La més barata · 43"</span>
+          <h3><a href="https://www.hisense.es/televisores/qled/serie-e7q-qled-tv-43e7q-smart-tv-43-pulgadas-con-dolby-vision-atmos/" target="_blank" rel="noopener">Hisense 43E7Q (2025)</a></h3>
+          <p><strong>≈ 320 €</strong> <span class="tag n">estimat</span></p>
+          <ul>
+            <li>A favor: el preu més baix; QLED amb Dolby Vision; mida proporcionada al caixó.</li>
+            <li>En contra: el sistema VIDAA té menys aplicacions que Google TV o Tizen; preus molt variables segons la botiga.</li>
+          </ul>
+        </div>
+        <div>
+          <span class="eyebrow">Equilibrada · 43"</span>
+          <h3><a href="https://www.pccomponentes.com/samsung-ai-qled-43-tq43q7faauxxc-ultrahd-4k-quantum-hdr-tizen" target="_blank" rel="noopener">Samsung Q7F 43" (TQ43Q7F)</a></h3>
+          <p><strong>362,99 €</strong> <span class="tag v">verificat</span> · 96,8 cm · 7,1 kg · VESA 200 × 200</p>
+          <ul>
+            <li>A favor: QLED de marca, sistema Tizen amb totes les aplicacions; lleugera; mida proporcionada.</li>
+            <li>En contra: fa 6 cm de gruix, més que les Samsung Q8F, LG i The Frame; la fitxa indicava estoc pendent d'entrada.</li>
+          </ul>
+        </div>
+        <div>
+          <span class="eyebrow">La més vistosa · 50"</span>
+          <h3><a href="https://www.pccomponentes.com/reviews/philips-led-ambilight-50pus8010-50-4k-uhd-smart-dolby-atmos-titan-os" target="_blank" rel="noopener">Philips 50PUS8010 Ambilight</a></h3>
+          <p><strong>≈ 300 €</strong> <span class="tag p">parcial</span></p>
+          <ul>
+            <li>A favor: l'Ambilight projecta llum de colors a la paret del voltant. Sobre el caixó pintat d'argila i al costat del foc fa molt d'efecte; molt barata per ser de 50".</li>
+            <li>En contra: panell LED, no QLED; sistema Titan OS, més nou i amb menys recorregut; 50" domina el caixó.</li>
+          </ul>
+        </div>
+        <div>
+          <span class="eyebrow">Fina i gran · 50"</span>
+          <h3><a href="https://www.pccomponentes.com/tv-samsung-qled-ai-50-tq50q8faauxxc-ultrahd-4k-quantum-hdr-plus-tizen" target="_blank" rel="noopener">Samsung Q8F 50" (TQ50Q8F)</a></h3>
+          <p><strong>459,59 €</strong> <span class="tag v">verificat</span> · 111,8 cm · 10,8 kg · VESA 200 × 200</p>
+          <ul>
+            <li>A favor: només 2,6 cm de gruix, queda enganxada a la paret; QLED amb Tizen.</li>
+            <li>En contra: la ven un venedor extern a PcComponentes (reviseu garantia i devolucions); domina el caixó.</li>
+          </ul>
+        </div>
+        <div>
+          <span class="eyebrow">Millor imatge · 42"</span>
+          <h3><a href="https://www.pccomponentes.com/tv-lg-oled-evo-ai-oled42c5elb-42-4k-ultrahd-120hz-smart-tv-webos-hdr10-dolby-vision-atmos" target="_blank" rel="noopener">LG OLED evo C5 42"</a></h3>
+          <p><strong>≈ 720–850 €</strong> <span class="tag p">parcial</span> · ≈ 93 cm</p>
+          <ul>
+            <li>A favor: la millor imatge i el millor angle de visió, que és el que importa si queda per sobre dels ulls; negres perfectes de vespre; molt fina; la mida que més s'ajusta al caixó.</li>
+            <li>En contra: més del doble de preu; amb el sol de la tarda brilla menys que una QLED.</li>
+          </ul>
+        </div>
+        <div>
+          <span class="eyebrow">Sembla un quadre · 43"</span>
+          <h3><a href="https://www.pccomponentes.com/tv-samsung-qled-the-frame-gq43ls03fau-43-4k-ultrahd-50hz-smart-tv-tizen-hdr10-art-mode" target="_blank" rel="noopener">Samsung The Frame 43" (2025)</a></h3>
+          <p><strong>≈ 770 €</strong> <span class="tag n">estimat</span> · 97 cm · 8,6 kg · 2,5 cm de gruix</p>
+          <ul>
+            <li>A favor: apagada mostra quadres, i sobre la xemeneia sembla una làmina més (<a href="https://www.samsung.com/es/lifestyle-tvs/the-frame/highlights/" target="_blank" rel="noopener">fotos a la web de Samsung</a>); pantalla mat sense reflexos; porta el seu suport pla a la caixa.</li>
+            <li>En contra: cara; el suport no s'inclina, així que es veu una mica de baix a dalt; a PcComponentes no estava disponible.</li>
+          </ul>
+        </div>
+      </div>
+      <h3 style="margin-top:8px">Les vostres aplicacions a cada sistema</h3>
+      <div class="tablewrap">
+        <table class="tvs">
+          <thead><tr><th>Sistema</th><th>YouTube</th><th>Spotify</th><th>Filmin</th><th>3Cat</th><th>RTVE Play</th><th>Netflix</th><th>Prime Video</th><th>Disney+</th><th>Movistar Plus+</th></tr></thead>
+          <tbody><tr><td data-label="Sistema">Tizen (Samsung)</td><td data-label="YouTube"><span class="tag v">sí</span></td><td data-label="Spotify"><span class="tag v">sí</span></td><td data-label="Filmin"><span class="tag v">sí</span></td><td data-label="3Cat"><span class="tag v">sí</span></td><td data-label="RTVE Play"><span class="tag v">sí</span></td><td data-label="Netflix"><span class="tag v">sí</span></td><td data-label="Prime Video"><span class="tag v">sí</span></td><td data-label="Disney+"><span class="tag v">sí</span></td><td data-label="Movistar Plus+"><span class="tag v">sí</span></td></tr><tr><td data-label="Sistema">webOS (LG)</td><td data-label="YouTube"><span class="tag v">sí</span></td><td data-label="Spotify"><span class="tag v">sí</span></td><td data-label="Filmin"><span class="tag v">sí</span></td><td data-label="3Cat"><span class="tag v">sí</span></td><td data-label="RTVE Play"><span class="tag v">sí</span></td><td data-label="Netflix"><span class="tag v">sí</span></td><td data-label="Prime Video"><span class="tag v">sí</span></td><td data-label="Disney+"><span class="tag v">sí</span></td><td data-label="Movistar Plus+"><span class="tag v">sí</span></td></tr><tr><td data-label="Sistema">Google TV (Sony, TCL, Xiaomi…)</td><td data-label="YouTube"><span class="tag v">sí</span></td><td data-label="Spotify"><span class="tag v">sí</span></td><td data-label="Filmin"><span class="tag v">sí</span></td><td data-label="3Cat"><span class="tag v">sí</span></td><td data-label="RTVE Play"><span class="tag v">sí</span></td><td data-label="Netflix"><span class="tag v">sí</span></td><td data-label="Prime Video"><span class="tag v">sí</span></td><td data-label="Disney+"><span class="tag v">sí</span></td><td data-label="Movistar Plus+"><span class="tag v">sí</span></td></tr><tr><td data-label="Sistema">VIDAA (Hisense)</td><td data-label="YouTube"><span class="tag v">sí</span></td><td data-label="Spotify"><span class="tag v">sí</span></td><td data-label="Filmin"><span class="tag v">sí</span></td><td data-label="3Cat"><span class="tag p">no</span></td><td data-label="RTVE Play"><span class="tag n">probable</span></td><td data-label="Netflix"><span class="tag v">sí</span></td><td data-label="Prime Video"><span class="tag v">sí</span></td><td data-label="Disney+"><span class="tag v">sí</span></td><td data-label="Movistar Plus+"><span class="tag v">sí</span></td></tr><tr><td data-label="Sistema">Titan OS (Philips)</td><td data-label="YouTube"><span class="tag v">sí</span></td><td data-label="Spotify"><span class="tag v">sí</span></td><td data-label="Filmin"><span class="tag p">no trobat</span></td><td data-label="3Cat"><span class="tag v">sí</span></td><td data-label="RTVE Play"><span class="tag p">no trobat</span></td><td data-label="Netflix"><span class="tag v">sí</span></td><td data-label="Prime Video"><span class="tag v">sí</span></td><td data-label="Disney+"><span class="tag v">sí</span></td><td data-label="Movistar Plus+"><span class="tag v">sí</span></td></tr></tbody>
+        </table>
+      </div>
+      <p class="note">Fonts: ajuda oficial de <a href="https://www.3cat.cat/ajuda/3cat/3cat-televisor.html" target="_blank" rel="noopener">3Cat</a> (Samsung del 2018 endavant, LG i Android TV 10 o superior), de <a href="https://ayuda.filmin.es/es/support/solutions/articles/47001259704-dispositivos-compatibles-desde-los-que-ver-filmin" target="_blank" rel="noopener">Filmin</a> (Samsung, LG, Android TV 9 o superior i Hisense VIDAA 2.5 o 4.0) i articles sobre Movistar Plus+ i RTVE Play. VIDAA: 3Cat no surt a la llista oficial de 3Cat, i una guia diu que no és compatible; RTVE Play surt a la web d'ajuda de Hisense i en una guia del 2026, però no en una font oficial actual. Titan OS: 3Cat hi és des de l'octubre del 2026 (nota de premsa de Titan OS); de Filmin i RTVE Play no n'he trobat res. Per això no les recomano. Si mai una aplicació falta, un Chromecast amb Google TV (uns 40 €) les té totes.</p>
+
+      <h3 style="margin-top:8px">OLED o similar que no sobresurtin més de 9 cm</h3>
+      <p class="note">Condicions: OLED o Mini-LED, sistema Tizen, webOS o Google TV, amplada màxima de 96 cm, el menor pes i el menor preu possibles. Sony no fa OLED de menys de 55", i no he trobat cap OLED de 42" amb Google TV confirmat.</p>
+      <div class="tablewrap">
+        <table class="tvs">
+          <thead><tr><th>Model</th><th>Mida</th><th>Amplada</th><th>Sobresurt del caixó</th><th>Gruix</th><th>Pes</th><th>Panell</th><th>Sistema</th><th>Forats VESA</th><th>Preu</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Model"><a href="https://www.displayspecifications.com/en/model/9f744040" target="_blank" rel="noopener">Samsung S90F 42" (QE42S90F)</a></td><td data-label="Mida">42" 4K</td><td data-label="Amplada">93,4 cm</td><td data-label="Sobresurt">7,7 cm per costat</td><td data-label="Gruix">4,0 cm</td><td data-label="Pes">8,3 kg</td><td data-label="Panell">OLED</td><td data-label="Sistema">Tizen</td><td data-label="VESA">200 × 200</td><td data-label="Preu">≈ 780–900 € <span class="tag n">estimat</span></td></tr>
+            <tr><td data-label="Model"><a href="https://www.pccomponentes.com/tv-lg-oled-evo-ai-oled42c5elb-42-4k-ultrahd-120hz-smart-tv-webos-hdr10-dolby-vision-atmos" target="_blank" rel="noopener">LG OLED evo C5 42"</a></td><td data-label="Mida">42" 4K</td><td data-label="Amplada">93,2 cm</td><td data-label="Sobresurt">7,6 cm per costat</td><td data-label="Gruix">4,1 cm</td><td data-label="Pes">9,8 kg</td><td data-label="Panell">OLED</td><td data-label="Sistema">webOS</td><td data-label="VESA">300 × 200</td><td data-label="Preu">722–850 € <span class="tag p">parcial</span></td></tr>
+            <tr><td data-label="Model"><a href="https://www.samsung.com/es/tvs/qled-tv/qn90f-43-inch-neo-qled-4k-mini-led-smart-tv-tq43qn90fatxxc/" target="_blank" rel="noopener">Samsung Neo QLED QN90F 43"</a></td><td data-label="Mida">43" 4K</td><td data-label="Amplada">96,1 cm</td><td data-label="Sobresurt">9,0 cm per costat (al límit)</td><td data-label="Gruix">2,7 cm</td><td data-label="Pes">9,4 kg</td><td data-label="Panell">Mini-LED</td><td data-label="Sistema">Tizen</td><td data-label="VESA">200 × 200</td><td data-label="Preu">740–919 € <span class="tag p">parcial</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="note">
+        <li><strong>OLED:</strong> cada píxel fa la seva llum. Negres perfectes i el millor angle de visió, ideal de vespre i per a una TV que queda per sobre dels ulls. Amb molt de sol, brilla menys.</li>
+        <li><strong>Mini-LED (Neo QLED):</strong> és un LED amb milers de llums petites al darrere. Molt brillant de dia i negres molt bons, però no tan perfectes com l'OLED, i l'angle de visió és pitjor.</li>
+        <li>La LG OLED C4 de 42" (la del 2024) ara surt més cara que la C5, entre 966 i 1.089 €. No té sentit.</li>
+      </ul>
+      <div class="callout">
+        <strong>La meva recomanació: Samsung S90F de 42" OLED amb el suport Goobay, si el preu queda per sota d'uns 850 €.</strong>
+        <span>És OLED, té Tizen amb totes les vostres aplicacions, sobresurt només 7,7 cm per costat i és l'OLED més lleugera (8,3 kg). No he trobat el preu a Espanya: al Regne Unit surt per unes 680 lliures (≈ 790 €). Si a Espanya surt més cara, la LG OLED C5 de 42" és pràcticament igual de bona, amb webOS, i el preu trobat és de 722–850 €. Pesa 1,5 kg més. La Neo QLED és l'opció si la sala té molt de sol, però queda just al límit dels 9 cm.</span>
+      </div>
+      <p class="note">Preus consultats el 10/11/2026. A prop de Black Friday canvien molt: reviseu-los abans de comprar.</p>
+    </section>
+
+    <section id="taula">
+      <h2>Zona menjador</h2>
+      <div class="zone">
+        <div>
+          <h3>Taula</h3>
+          <ul>
+            <li><strong>Camí de taula de lli</strong> en lloc de les estovalles de quadres. La fusta queda a la vista.</li>
+            <li>Al centre, un gerro de ceràmica clara amb <strong>branques d'olivera</strong> (seques o artificials) i dos portaespelmes de llautó.</li>
+            <li>Les 6 cadires, amb <strong>coixins de lli amb cintes</strong> sobre els seients crema. Protegeixen el seient i fan joc amb el camí de taula.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Aparador</h3>
+          <ul>
+            <li>Netejar-lo i passar-hi <strong>cera de noguera</strong>. Les zones mats recuperen la brillantor.</li>
+            <li>A sobre, de baix a dalt: un <strong>llum de taula de ceràmica terracota</strong> a l'extrem de la finestra, una planta petita al mig i les fotos agrupades sobre la vitrina.</li>
+            <li>Damunt de l'aparador, <strong>dues làmines de 50 × 70</strong> amb marc de fusta, a 25 cm per sobre del moble.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Paret del passadís</h3>
+          <ul>
+            <li>Al costat de la taula, <strong>dues làmines més</strong> de la mateixa sèrie.</li>
+            <li>On era el penjador, un <strong>mirall rodó negre de Ø80</strong>. Reflecteix la llum de la finestra i la del foc.</li>
+            <li>A la cantonada de la finestra del fons, una <strong>kentia gran</strong> en un cistell.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="llum">
+      <h2>Il·luminació</h2>
+      <ul>
+        <li><strong>Biga de llum:</strong> tres bombetes de filament ambre de <strong>2200 K</strong> i regulables, i un regulador de paret compatible (de tall de fase). Ara una de les tres fa una llum molt més blanca que les altres.</li>
+        <li><strong>Llum de peu</strong> amb pantalla de tela plisada al costat de la butaca. És la llum per llegir i per veure la TV sense encendre la biga.</li>
+        <li><strong>Llum de taula</strong> sobre l'aparador. Deixa el menjador il·luminat sense encendre el sostre.</li>
+        <li><strong>Espelmes</strong> (o espelmes LED si el gat les toca) a la tauleta i al prestatge.</li>
+        <li>Opcional: els LED de sota els armaris de la cuina fan llum freda i es veuen des del sofà. Canviar-los per llum càlida (2700–3000 K) faria que tot l'espai lligués.</li>
+      </ul>
+      <p class="note">La regla al vespre: la biga regulada a la meitat, més el llum de peu i el de taula. Mai només el llum de sostre.</p>
+    </section>
+
+    <section id="parets">
+      <h2>Parets</h2>
+      <ul>
+        <li><strong>Làmines:</strong> 4 de 50 × 70 d'una mateixa sèrie, en tons terra: botànica d'olivera, abstracte terracota o paisatge mediterrani. Marcs de fusta natural o noguera, tots iguals.</li>
+        <li><strong>Alçada:</strong> el centre de cada làmina a uns 155–160 cm de terra, o a 25 cm per sobre del moble que tingui a sota.</li>
+        <li><strong>Pilar de maó de la cuina:</strong> és un element bonic. Netejar-lo amb raspall i, si cal, segellar-lo amb un vernís mat per a maó.</li>
+        <li><strong>Marcs de porta foscos:</strong> no els pinteu. Lliguen amb l'aparador i amb el negre de la TV.</li>
+        <li>Les <strong>cortines de lli beix</strong> es queden: són del to correcte.</li>
+      </ul>
+    </section>
+
+    <section id="plantes">
+      <h2>Plantes i gat</h2>
+      <ul>
+        <li><strong>Kentia</strong> (<i>Howea forsteriana</i>), gran, a la cantonada de la finestra del fons. No és tòxica per als gats segons l'ASPCA i aguanta poca llum.</li>
+        <li>A l'altra cantonada de la finestra no hi va cap planta: tocaria l'aparador i no deixaria obrir-ne les portes.</li>
+        <li><strong>Calathea</strong>, petita, sobre l'aparador. No és tòxica per als gats segons l'ASPCA.</li>
+        <li>Compreu-les sempre pel <strong>nom botànic</strong>. A les botigues, «palmera» pot ser una cica, que és molt tòxica.</li>
+        <li><strong>Lluny dels radiadors i del foc.</strong> Les plantes s'assequen.</li>
+        <li><strong>Gat:</strong> res de iute, bucles ni bouclé on hi pugui fer les ungles. Les fundes i els coixins, de teixit tancat. El rascador ha de quedar a prop del sofà, perquè el gat triï el rascador i no el sofà.</li>
+      </ul>
+    </section>
+
+    <section id="restaurar">
+      <h2>Restaurar el que teniu</h2>
+      <div class="zone">
+        <div>
+          <h3>Aparador de noguera</h3>
+          <ul>
+            <li>Netejar-lo amb aigua i sabó neutre, amb un drap poc mullat.</li>
+            <li>Una capa fina de cera de noguera als cops i les ratllades.</li>
+            <li>Una capa de cera transparent a tot el moble i polir-lo.</li>
+            <li>Si algun dels plafons de tela de les portes està malmès, es pot canviar per reixeta de rotang. Cal demanar preu per metre a una botiga especialitzada.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tauleta de palets</h3>
+          <ul>
+            <li>Llijar-la amb gra 80 i després 120. Es treuen les estelles.</li>
+            <li>Dues mans d'oli per a fusta, color natural o noguera clara.</li>
+            <li>A sobre, un vidre templat a mida (vegeu <a href="#vidres">vidres a mida</a>).</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cadires</h3>
+          <ul>
+            <li>N'hi ha prou amb els coixins de lli.</li>
+            <li>Si algun dia voleu retapissar els seients, compteu uns 2,5–3 m de loneta beix de 140 cm d'ample per a les 8 cadires. És un teixit tancat, millor que el bouclé amb gat.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="vidres">
+      <h2>Vidres a mida</h2>
+      <div class="zone">
+        <div>
+          <h3>Taula del menjador</h3>
+          <ul>
+            <li><strong>Templat de 6 mm, transparent, amb cantell polit.</strong> El vidre reposa sobre tot el tauler de fusta, i per això n'hi ha prou amb 6 mm. El de 8 mm és més car i aquí no aporta res.</li>
+            <li><strong>Amb plantilla.</strong> Les puntes arrodonides no són corbes estàndard. Feu una plantilla de cartró resseguint la taula o demaneu a la vidrieria que vingui a prendre mides.</li>
+            <li>Que quedi <strong>1 cm per dins de la vora</strong> del tauler. Així no es veu el cantell i no s'hi fa mal ningú.</li>
+            <li>El vidre templat no es pot retallar després. Comproveu la plantilla dues vegades.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tauleta de palets</h3>
+          <ul>
+            <li><strong>Templat de 6 mm, 100 × 60, cantell polit i cantonades arrodonides</strong> de 2–3 cm.</li>
+            <li>Mesureu la tauleta un cop llijada. Els palets no sempre són rectes, i s'ha d'agafar la mida més petita.</li>
+            <li>Amb vidre, la tauleta passa de rústica a acabada, i les espelmes i els gots no taquen la fusta.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Què demanar al pressupost</h3>
+          <ul>
+            <li>Per a tots dos vidres: gruix, tipus de vidre (templat), cantell polit, forma i mides.</li>
+            <li>Si el preu inclou fer la plantilla, el transport i la col·locació.</li>
+            <li>Demaneu-ho igual a 2 o 3 vidrieries per poder comparar.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="proveidors">
+      <h2>Proveïdors a prop de Girona</h2>
+      <p class="note">Dades públiques de les empreses trobades en webs i directoris. No he contactat amb ningú i no he trobat preus publicats: cal demanar pressupost. Abans de trucar, comproveu que les dades encara són vigents.</p>
+      <div class="tablewrap">
+        <table class="prov">
+          <thead><tr><th>Empresa</th><th>On</th><th>Contacte</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="sub"><td colspan="4">Vidrieries</td></tr>
+            <tr><td>Vidriera Gironina</td><td>Girona</td><td><a href="https://www.vidrieragironina.com/" target="_blank" rel="noopener">vidrieragironina.com</a></td><td>Des de 1988. Valoració de 8,6/10 a Trustlocal (66 opinions). És la primera on demanaria preu.</td></tr>
+            <tr><td>Cristalleries Crigersa</td><td>Pont Major, Girona</td><td><a href="https://www.cristalleriescrigersa.es/" target="_blank" rel="noopener">cristalleriescrigersa.es</a></td><td>Fan pressupost gratuït per telèfon.</td></tr>
+            <tr><td>Vidresif Industrial</td><td>Porqueres (Banyoles), ~20 km</td><td>972 580 721 · <a href="https://www.vidresif.com/" target="_blank" rel="noopener">vidresif.com</a></td><td>Fabriquen vidre de seguretat (templat). Les dades són de 2020: verifiqueu-les.</td></tr>
+            <tr><td>Vidres Tramun</td><td>Vilafant (Figueres), ~40 km</td><td>972 67 07 13 · <a href="https://www.vidrestramun.com/" target="_blank" rel="noopener">vidrestramun.com</a></td><td>Vidres i miralls a mida. Més lluny, però serveix per comparar preu.</td></tr>
+            <tr><td>Plakglass (en línia)</td><td>Enviament a domicili</td><td><a href="https://www.plakglass.es/presupuesto-vidrio-templado.php" target="_blank" rel="noopener">configurador de vidre templat</a></td><td>Templat des de 82,80 €/m². Només serveix per al vidre rectangular de la tauleta; la forma de la taula s'ha de fer al taller.</td></tr>
+            <tr class="sub"><td colspan="4">Neteja de xemeneies</td></tr>
+            <tr><td>Neteja Xemeneies Girona</td><td>Sant Julià de Ramis</td><td><a href="https://trustlocal.es/girona/sant-julia-de-ramis/instalador-calefaccion/neteja-xemeneies-girona-s-c/" target="_blank" rel="noopener">fitxa a Trustlocal</a></td><td>4,3 a Google (24 opinions). Pressupost gratuït.</td></tr>
+            <tr><td>Xemeneies Pla</td><td>Girona</td><td><a href="https://www.habitissimo.es/empresas/chimeneas/girona/girona" target="_blank" rel="noopener">directori d'Habitissimo</a></td><td>4,2 a Habitissimo (9 opinions). Fa més de 50 anys que treballen.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Estimació de preu dels vidres: entre 80 i 300 €/m² segons la font. Les tarifes publicades són molt dispars. La taula fa 1,62 m² i, a més, porta plantilla; la tauleta en fa 0,6. Les xifres de la llista de compra són franges orientatives fins que tingueu pressupostos.</p>
+    </section>
+
+    <section id="compra">
+      <h2>Llista de compra</h2>
+      <p class="note">Preus consultats entre el 8 i el 10/11/2026. <span class="tag v">verificat</span> vol dir preu llegit a la fitxa del producte. <span class="tag p">parcial</span> vol dir preu vist en un llistat o en una cerca, sense confirmar a la fitxa. <span class="tag n">estimat</span> vol dir que no hi ha model concret i el preu és una franja orientativa. Comproveu-ho tot abans de comprar.</p>
+      <div class="tablewrap">
+        <table class="shop">
+          <thead><tr><th>Peça</th><th>Producte</th><th>Botiga</th><th style="text-align:right">Preu</th><th>Estat</th></tr></thead>
+          <tbody>
+            <tr class="sub"><td colspan="5">Tèxtils</td></tr>
+            <tr><td>Catifa 160 × 230</td><td><a href="https://www.ikea.com/es/es/p/vaxelfel-alfombra-pelo-corto-hueso-20636967/" target="_blank" rel="noopener">VÄXELFEL, pèl curt, os</a>. Es renta a mà a 40 °C.</td><td>IKEA</td><td class="num">59,99 €</td><td><span class="tag v">verificat</span></td></tr>
+            <tr><td>Base antilliscant</td><td><a href="https://www.ikea.com/es/es/p/stopp-filt-protector-antideslizante-90132261/" target="_blank" rel="noopener">STOPP FILT, 165 × 235</a>. Es retalla a la mida de la catifa.</td><td>IKEA</td><td class="num">7,99 €</td><td><span class="tag v">verificat</span></td></tr>
+            <tr><td>Fundes de coixí × 4</td><td><a href="https://www.ikea.com/es/es/p/gurli-funda-cojin-sin-blanquear-80598731/" target="_blank" rel="noopener">GURLI 50 × 50</a>, en taronja i verd (els que més s'acostin a terracota i oliva)</td><td>IKEA</td><td class="num">11,96 €</td><td><span class="tag v">verificat</span></td></tr>
+            <tr><td>Farcits × 4</td><td><a href="https://www.ikea.com/es/es/p/inner-relleno-cojin-blanco-50550702/" target="_blank" rel="noopener">INNER 50 × 50</a> (només si no en teniu)</td><td>IKEA</td><td class="num">15,96 €</td><td><span class="tag v">verificat</span></td></tr>
+            <tr><td>Manta</td><td><a href="https://www.ikea.com/es/es/p/lapptag-manta-hueso-10572206/" target="_blank" rel="noopener">LAPPTÅG, cotó i llana, 130 × 170</a>. Rentar-la abans d'usar-la.</td><td>IKEA</td><td class="num">39,99 €</td><td><span class="tag v">verificat</span></td></tr>
+            <tr><td>Coixins de cadira × 6</td><td><a href="https://www.ikea.com/es/es/p/vippart-cojin-beige-10599282/" target="_blank" rel="noopener">VIPPÄRT beix amb cintes, 38 × 38</a></td><td>IKEA</td><td class="num">47,94 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Camí de taula</td><td><a href="https://www.zarahome.com/es/comedor/manteler%C3%ADa/caminos-de-mesa-c1089097.html" target="_blank" rel="noopener">Camí de lli, mida 50 × 250</a>. Sobre la taula de 180 cm deixa caure 35 cm per cada punta.</td><td>Zara Home</td><td class="num">23–35 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Funda de sofà</td><td><a href="https://www.carrefour.es/hogar-basic-beige-berta-beta-multiple/F-1027Z1182Z113jZpvqbZ2iaoZ10yf/c" target="_blank" rel="noopener">Estoralis Beta beix, talla de 4 places (220–260 cm)</a>. Per a un sofà de 230 cm, aquesta talla queda més cenyida que la de 3 places (190–230).</td><td>Carrefour</td><td class="num">35–50 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr class="sub"><td colspan="5">Il·luminació</td></tr>
+            <tr><td>Bombetes × 3</td><td><a href="https://www.lucide.com/en/shop/light-bulbs/filament-bulbs/details/g95-49032_05_62" target="_blank" rel="noopener">Lucide G95 ambre, 2200 K, regulable</a>. Comproveu que el vostre regulador hi és compatible.</td><td>Lucide</td><td class="num">25–35 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr><td>Llum de peu</td><td><a href="https://www.ikea.com/es/es/p/oekensand-lampara-de-pie-blanco-00541526/" target="_blank" rel="noopener">ÖKENSAND, pantalla plisada i peus de faig</a>. La bombeta es compra a part.</td><td>IKEA</td><td class="num">29,99 €</td><td><span class="tag v">verificat</span></td></tr>
+            <tr><td>Llum de taula</td><td><a href="https://www.sklum.com/es/comprar-lamparas-de-sobremesa/148618-lampara-de-mesa-en-lino-y-terracota-aloia.html" target="_blank" rel="noopener">ALOIA, peu de terracota i pantalla de lli, 44 cm d'alçada</a>. Confirmeu el preu a la cistella.</td><td>Sklum</td><td class="num">46,95 €</td><td><span class="tag v">verificat</span></td></tr>
+            <tr class="sub"><td colspan="5">Llar de foc i TV</td></tr>
+            <tr><td>Neteja i revisió de la xemeneia</td><td>Professional de la zona de Girona (vegeu <a href="#proveidors">proveïdors</a>)</td><td>—</td><td class="num">90–100 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr><td>Termòmetre d'infrarojos</td><td><a href="https://www.pccomponentes.com/termometro-infrarrojo-habotest-ht650b-no-contacto-50-c-a-550-c" target="_blank" rel="noopener">Habotest HT650B</a></td><td>PcComponentes</td><td class="num">16,99 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Suport de TV inclinable</td><td><a href="https://www.pccomponentes.com/aisens-wt55tse-057-soporte-para-tv-inclinable-32-55-vesa-400x400-max-30kg-negro" target="_blank" rel="noopener">Aisens WT55TSE-057</a>, 32–55", fins a 30 kg</td><td>PcComponentes</td><td class="num">14,89 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Prestatge</td><td><a href="https://www.leroymerlin.es/productos/tablero-macizo-de-pino-de-20x120x1-8-cm-10242162.html" target="_blank" rel="noopener">Tauler de pi massís 20 × 120</a></td><td>Leroy Merlin</td><td class="num">9,99 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Suports ocults × 3</td><td><a href="https://www.obramat.es/productos/soporte-oculto-para-balda-l-150mm-bicromatado-amig-10981222.html" target="_blank" rel="noopener">Suport ocult per a prestatge, 150 mm</a>. N'hi ha prou amb 3 per a 120 cm.</td><td>Obramat (Salt)</td><td class="num">15–20 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr><td>Tint per al prestatge</td><td><a href="https://www.leroymerlin.es/productos/tinte-de-madera-interior-promade-en-color-nogal-acabado-mate-para-mobiliario-liquido-de-375-ml-base-disolvente-14703591.html" target="_blank" rel="noopener">Tint de noguera Promade, 375 ml</a>. Deixa veure la veta.</td><td>Leroy Merlin</td><td class="num">6,79 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Canaleta per al cable</td><td><a href="https://www.leroymerlin.es/productos/canaleta-tehalit-blanca-20x12-mm-de-2-metros-11819283.html" target="_blank" rel="noopener">Tehalit blanca 20 × 12 mm, 2 m</a>. Es pinta del color del caixó.</td><td>Leroy Merlin</td><td class="num">3,27 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Imprimació antitaques</td><td><a href="https://www.titanlux.es/en/productos/producto/stain-isolating-paint-h24-indoor-matt" target="_blank" rel="noopener">Titan pintura aïllant de taques H24</a>. La fitxa diu que tapa el sutge.</td><td>Titan (botigues de pintura)</td><td class="num">25–35 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr><td>Pintura del caixó</td><td><a href="https://www.leroymerlin.es/productos/pintura-de-interior-salones-y-habitaciones-luxens-color-bali-2-mate-4l-para-paredes-y-techos-85063500.html" target="_blank" rel="noopener">Luxens mat 4 L</a>. Demaneu a la màquina de tintar un to argila clar a partir de la mostra.</td><td>Leroy Merlin</td><td class="num">23,79 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Cistell de llenya</td><td><a href="https://www.ikea.com/es/es/p/snidad-cesta-ratan-30394944/" target="_blank" rel="noopener">SNIDAD, rotang, Ø54</a></td><td>IKEA</td><td class="num">32,99 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr class="sub"><td colspan="5">Parets, plantes i complements</td></tr>
+            <tr><td>Mirall</td><td><a href="https://www.ikea.com/es/es/p/lindbyn-espejo-negro-50458614/" target="_blank" rel="noopener">LINDBYN negre, Ø80</a></td><td>IKEA</td><td class="num">59,99 €</td><td><span class="tag v">verificat</span></td></tr>
+            <tr><td>Làmines × 4</td><td><a href="https://desenio.com/p/posters-prints/botanical/green-plants/olive-branches-print" target="_blank" rel="noopener">Branques d'olivera (Desenio)</a> i <a href="https://hannun.com/en/products/lamina-organic-shapes-terracota-2" target="_blank" rel="noopener">Organic Shapes Terracota (Hannun, 9,99 €)</a>, en 50 × 70</td><td>Desenio / Hannun</td><td class="num">40–80 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr><td>Marcs 50 × 70 × 4</td><td><a href="https://www.ikea.com/es/es/search/?q=marco%2050x70" target="_blank" rel="noopener">Marcs de fusta de 50 × 70 a IKEA</a>, tots iguals</td><td>IKEA</td><td class="num">40–80 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr><td>Kentia</td><td><a href="https://www.leroymerlin.es/productos/planta-verde-kentia-howea-forsteriana-120-130-cm-en-maceta-de-24-cm-86326446.html" target="_blank" rel="noopener">Kentia 120–130 cm, test de 24 cm</a></td><td>Leroy Merlin</td><td class="num">40–90 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr><td>Calathea</td><td><a href="https://www.ikea.com/es/es/p/calathea-planta-calatea-mezcla-especies-plantas-10258829/" target="_blank" rel="noopener">CALATHEA, test de 19 cm</a>. Fa uns 85 cm d'alçada: millor a terra, al costat de l'aparador.</td><td>IKEA</td><td class="num">24,99 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Tauleta auxiliar</td><td><a href="https://www.ikea.com/es/es/p/kvistbro-mesa-de-almacenaje-negro-90480401/" target="_blank" rel="noopener">KVISTBRO, Ø44</a></td><td>IKEA</td><td class="num">39,99 €</td><td><span class="tag v">verificat</span></td></tr>
+            <tr><td>Cistelles d'endreçar × 2</td><td><a href="https://www.ikea.com/es/es/p/knipsa-cesta-20110540/" target="_blank" rel="noopener">KNIPSA, jonc marí</a>, per amagar cables i coses soltes dins de l'aparador</td><td>IKEA</td><td class="num">23,98 €</td><td><span class="tag v">verificat</span></td></tr>
+            <tr><td>Safata</td><td><a href="https://www.ikea.com/es/es/p/snudda-bandeja-plato-giratorio-madera-maciza-90074483/" target="_blank" rel="noopener">SNUDDA, fusta massissa, Ø39</a></td><td>IKEA</td><td class="num">8–12 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr><td>Portaespelmes</td><td><a href="https://www.ikea.com/es/es/p/fulltalig-candelabro-juego-3-color-laton-00608970/" target="_blank" rel="noopener">FULLTALIG, joc de 3, color llautó</a></td><td>IKEA</td><td class="num">14,99 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Espelmes × 2</td><td><a href="https://www.ikea.com/es/es/p/fenomen-vela-gruesa-sin-perfume-natural-30528415/" target="_blank" rel="noopener">FENOMEN gruixuda, sense perfum, 23 cm</a></td><td>IKEA</td><td class="num">9,98 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Gerro</td><td><a href="https://www.ikea.com/es/es/cat/floreros-jarrones-decorativos-10776/f/floreros-jarrones-decorativos-ceramica-f-materials--50606/" target="_blank" rel="noopener">Gerros de ceràmica a IKEA</a>, blanc trencat, 25–30 cm. Branques d'olivera de debò, d'un jardí o d'una floristeria.</td><td>IKEA</td><td class="num">7–20 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr class="sub"><td colspan="5">Vidres a mida</td></tr>
+            <tr><td>Vidre de la taula del menjador</td><td>Templat de 6 mm, transparent, cantell polit, amb la forma de la taula (180 × 90 i puntes arrodonides). Cal fer-ne plantilla.</td><td>Vidrieria local (vegeu <a href="#proveidors">proveïdors</a>)</td><td class="num">200–350 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr><td>Vidre de la tauleta de palets</td><td>Templat de 6 mm, 100 × 60, cantell polit i cantonades arrodonides de 2–3 cm. Es pot fer a la vidrieria o en línia al <a href="https://www.plakglass.es/presupuesto-vidrio-templado.php" target="_blank" rel="noopener">configurador de Plakglass</a>.</td><td>Vidrieria local o en línia</td><td class="num">60–110 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr><td>Topalls de silicona</td><td><a href="https://www.leroymerlin.es/search?q=topes%20silicona%20transparentes" target="_blank" rel="noopener">Topalls transparents adhesius de 1 cm</a>, perquè el vidre no rellisqui ni toqui directament la fusta</td><td>Leroy Merlin / ferreteria</td><td class="num">3–5 €</td><td><span class="tag n">estimat</span></td></tr>
+            <tr class="sub"><td colspan="5">Restauració</td></tr>
+            <tr><td>Cera de noguera</td><td><a href="https://www.leroymerlin.es/productos/cera-decorativa-de-madera-interior-promade-emplaste-en-color-nogal-acabado-satinado-para-mobiliario-en-pasta-de-30-gr-base-disolvente-10131870.html" target="_blank" rel="noopener">Promade, 30 g</a></td><td>Leroy Merlin</td><td class="num">1,99 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Cera transparent</td><td><a href="https://www.leroymerlin.es/productos/cera-decorativa-de-madera-interior-promade-en-color-transparente-acabado-satinado-para-mobiliario-en-pasta-de-250-ml-base-disolvente-82052508.html" target="_blank" rel="noopener">Promade, 250 ml</a></td><td>Leroy Merlin</td><td class="num">17,59 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Esponges de llijar</td><td><a href="https://www.leroymerlin.es/productos/pack-3-esponjas-para-lijar-dexter-81885800.html" target="_blank" rel="noopener">Dexter, pack de 3, gra 40/80/120</a></td><td>Leroy Merlin</td><td class="num">1,89 €</td><td><span class="tag p">parcial</span></td></tr>
+            <tr><td>Oli per a la tauleta</td><td><a href="https://www.leroymerlin.es/productos/aceite-de-teca-color-incoloro-para-caseta-de-jardin-mobiliario-puerta-ventana-xylazel-mate-4-l-base-agua-82520352.html" target="_blank" rel="noopener">Oli de teca incolor Xylazel</a>. Si hi poseu vidre a sobre, n'hi ha prou amb una mà.</td><td>Leroy Merlin</td><td class="num">12–20 €</td><td><span class="tag n">estimat</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="fases">
+      <h2>Pressupost per fases</h2>
+      <p>El total complet és d'uns <strong>880–1.105 € sense els vidres</strong>, i d'uns <strong>1.145–1.570 € amb els vidres</strong>. No cal fer-ho tot. Cada fase ja es nota per si sola, i les dues primeres són les que fan més canvi per menys diners.</p>
+      <div class="phases">
+        <div class="phase"><span class="eyebrow">Fase 1 · Endreçar</span><span class="amt">0 €</span><span class="note">Cadires, penjador, joguines, cables, fotos i estovalles.</span></div>
+        <div class="phase"><span class="eyebrow">Fase 2 · Calidesa</span><span class="amt">≈ 200–220 € <small>tèxtils i llum</small></span><span class="note">Catifa, coixins, manta, bombetes, llum de peu i camí de taula. És el gran canvi.</span></div>
+        <div class="phase"><span class="eyebrow">Fase 3 · Llar de foc</span><span class="amt">≈ 240–285 €</span><span class="note">Neteja, termòmetre, pintura, prestatge, suport i cistell de llenya.</span></div>
+        <div class="phase"><span class="eyebrow">Fase 4 · Acabats</span><span class="amt">≈ 440–600 €</span><span class="note">Funda del sofà, coixins de cadira, mirall, làmines, plantes, llum de taula, tauleta, complements i restauració.</span></div>
+        <div class="phase"><span class="eyebrow">Opcional · TV nova</span><span class="amt">≈ 740–915 €</span><span class="note">Segons el model triat, amb el suport inclòs. Vegeu <a href="#tele">quina TV</a>.</span></div>
+        <div class="phase"><span class="eyebrow">Fase 5 · Vidres</span><span class="amt">≈ 265–465 €</span><span class="note">Vidre de la taula amb plantilla, vidre de la tauleta i topalls. Depèn del pressupost.</span></div>
+      </div>
+      <p class="note">Les sumes són aproximades i inclouen els preus estimats. A IKEA, algunes ofertes exigeixen comprar-ne dues unitats i els enviaments van a part.</p>
+    </section>
+
+    <section id="ordre">
+      <h2>Ordre de feina</h2>
+      <ol>
+        <li><strong>Endreçar</strong> (fase 1) i moure els mobles a la distribució nova, amb la TV encara en un moble baix.</li>
+        <li><strong>Demanar la revisió de la xemeneia</strong> i mesurar la temperatura de la paret amb el termòmetre durant un parell de vespres de foc.</li>
+        <li><strong>Comprar els tèxtils i les bombetes</strong> (fase 2). Viure-hi un parell de setmanes abans de decidir la resta.</li>
+        <li>Si la temperatura i el manual ho permeten, <strong>pintar el caixó</strong>, col·locar el prestatge i penjar la TV.</li>
+        <li><strong>Penjar les làmines i el mirall</strong>. Abans, marqueu-ne la posició a la paret amb cinta de pintor.</li>
+        <li><strong>Vidres:</strong> primer llijar i acabar la tauleta, després fer la plantilla de la taula i demanar 2 o 3 pressupostos.</li>
+        <li><strong>Plantes i complements</strong> al final, quan ja es veu què hi falta.</li>
+      </ol>
+    </section>
+  </main>
+</div>
+
+</body>
+</html>
