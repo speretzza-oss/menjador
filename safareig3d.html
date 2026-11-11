@@ -70,7 +70,7 @@ if(ok){try{localStorage.setItem("menjador-ok","1")}catch(_){}document.documentEl
   <header>
     <p class="eyebrow">Quarto de rentar · 1,65 × 1,56 m</p>
     <h1>Quarto de rentar en 3D</h1>
-    <p class="lede">Compara com està ara amb la proposta: sense la pica, rentadora Hisense nova sota un taulell continu, prestatges a sobre, rebost tancat a la paret esquerra i el sorral del gat amagat en un moble.</p>
+    <p class="lede">Compara com està ara amb la proposta: sense la pica, columna de rentadora i secadora Hisense blanques, estació de reciclatge IVAR amb cortina (galledes, vidre i sac de sorra) i rebost tancat a la paret esquerra.</p>
   </header>
   <div class="bar">
     <div class="group" role="group" aria-label="Distribució">
@@ -202,6 +202,23 @@ const B={
   broom(g){box(g,30,4,3,0xf2f2f2,0,112,1.5);for(const[x,c]of[[-8,0x2c7be5],[8,0x222222]]){cyl(g,1,1,104,0x9a9a9a,x,62,4,{metalness:.6});box(g,c===0x222222?26:22,6,6,c,x,8,6);} return{w:30,d:8};},
   rack(g){box(g,80,4,3,0xf2f2f2,0,150,1.5);for(let i=0;i<5;i++)cyl(g,.5,.5,78,0xd0d0d0,0,148-i*1.2,4+i*3,{metalness:.7}).rotation.z=PI/2;return{w:80,d:18};},
   hamper(g){for(let i=0;i<2;i++){box(g,19,55,33,[0xd8cfbf,0x6e7144][i],-10+i*20,33,0,{roughness:1});}box(g,40,2,35,0x1d1d1d,0,4,0,{metalness:.5});for(const sx of[-18,18])for(const sz of[-15,15])cyl(g,2,2,3,0x111111,sx,1.5,sz);return{w:40,d:35};},
+  dryer(g){g.position.y=0;const y0=89;box(g,59.5,4.5,59,0xf2f2f2,0,86.75,0);box(g,40,1.2,30,0xe6e6e6,0,88.6,22);
+    rbox(g,59.5,84.5,55,2.5,0xfafafa,0,y0+42.25,0,{roughness:.35});box(g,57,9,1,0x1e1e1e,0,y0+76.5,27.6,{roughness:.3});cyl(g,3,3,1.5,0xb9b9b9,-20,y0+76.5,28.4,{metalness:.6}).rotation.x=PI/2;
+    add(g,new THREE.TorusGeometry(17.5,3.2,12,40),mat(0x9a9a9a,{metalness:.6,roughness:.3}),0,y0+40,28.2);add(g,new THREE.CircleGeometry(15.5,32),mat(0x2a3540,{roughness:.05,metalness:.3,transparent:true,opacity:.85}),0,y0+40,28.6);
+    box(g,14,8,1,0xeeeeee,-18,y0+8,27.8);return{w:59.5,d:59};},
+  station(g){const pine=mat(0xffffff,{map:TEX.pine,roughness:.6});
+    for(const sx of[-43.5,43.5])for(const sz of[-23,23])box(g,2,179,2.4,pine,sx,89.5,sz);for(const sx of[-43.5,43.5])for(const y of[30,100,160])box(g,1.2,1.2,46,pine,sx,y,0);
+    for(const y of[68,122,177])box(g,85,1.8,48,pine,0,y,0);
+    rbox(g,45,60,45,2,0xf4f4f4,-19,30,-1,{roughness:.6});rbox(g,30,45,30,2,0x6b4a2e,24,22.5,-6,{roughness:.6});
+    rbox(g,22,37,35,2,0xd9dcdc,-28,69+18.5,-5,{roughness:.6});rbox(g,30,45,15,4,0xf1d33a,4,69+22.5,-8,{roughness:.9});box(g,28,10,.5,0x2b2b2b,4,95,0);
+    for(const x of[-28,-6]){cyl(g,9,9,24,mat(0xe8f0f2,{transparent:true,opacity:.55,roughness:.05}),x,123+12,-6);cyl(g,8.4,8.4,14,0xbfd8e8,x,123+8,-6,{transparent:true,opacity:.7});cyl(g,9.4,9.4,2,0xc9a46a,x,123+25,-6);box(g,2,2,5,0x9a9a9a,x,127,4,{metalness:.7});}
+    for(let i=0;i<3;i++)box(g,12,10,12,0xf5f1e8,14+i*13,128,-8,{roughness:.8});
+    for(let i=0;i<2;i++)rbox(g,32,30,32,2,mat(0xffffff,{map:TEX.wicker,roughness:1}),-20+i*40,178+15,-4);
+    const pl=new THREE.Group();pl.position.set(28,180,14);g.add(pl);cyl(pl,6,5,9,0xe9e2d6,0,4,0);for(let i=0;i<7;i++){const st=add(pl,new THREE.SphereGeometry(1,8,6),mat(0x7d9c8a,{roughness:.8}),Math.sin(i)*4,-2-i*3.2,Math.cos(i)*3+5);st.scale.set(3,1.8,.6);}
+    cyl(g,.8,.8,86,0xf2f2f2,0,165,25.5,{metalness:.3}).rotation.z=PI/2;
+    const cg=new THREE.PlaneGeometry(56,150,28,1);const pos=cg.attributes.position;for(let i=0;i<pos.count;i++)pos.setZ(i,Math.sin(pos.getX(i)/2.6)*1.6);cg.computeVertexNormals();
+    const cur=add(g,cg,mat(0xf6f4ef,{side:THREE.DoubleSide,roughness:1}),-15,89,26);cur.castShadow=false;
+    return{w:89,d:50};},
   rug(g){rbox(g,80,1,50,.4,0x4a4a48,0,.5,0,{roughness:1});return{w:80,d:50};},
   hooks(g){const pine=mat(0xffffff,{map:TEX.pine});box(g,40,9,2,pine,0,150,1);box(g,40,1.6,17,pine,0,155,8.5);for(let i=0;i<4;i++){box(g,1.4,6,1.4,0x1d1d1d,-15+i*10,146,4);}
     box(g,12,28,1,0xf2f2ee,-15,134,5,{roughness:1});box(g,10,24,1,0x8a8f8c,5,136,5,{roughness:1});return{w:40,d:17};},
@@ -217,22 +234,19 @@ const LAYOUTS={
     {id:"clutter",type:"clutter",label:"Sorra i paperera",x:24,z:118,rot:90}
   ],
   proposta:[
-    {id:"litter",type:"litter",label:"Moble sorral del gat",x:29.5,z:23.5,rot:0},
-    {id:"broom",type:"broom",label:"Penja-escombres",x:RW,z:116,rot:-90},
-    {id:"worktop",type:"worktop",label:"Taulell de pi",w:106,x:112,z:30,rot:0},
-    {id:"hamper",type:"hamper",label:"Cistella de roba de 2 bosses",x:81,z:30,rot:0},
+    {id:"station",type:"station",label:"Estació de reciclatge IVAR amb cortina",x:44.5,z:25,rot:0},
     {id:"washer",type:"washer",label:"Rentadora Hisense WF3S9043BW3",x:132,z:28,rot:0},
-    {id:"boaxel",type:"boaxel",label:"Prestatges BOAXEL",w:125,x:102.5,z:20,rot:0},
+    {id:"dryer",type:"dryer",label:"Secadora Hisense DHQE800BW2 (més endavant)",x:132,z:28,rot:0},
     {id:"ivar",type:"ivar",label:"Rebost IVAR amb portes",x:15,z:97,rot:90},
-    {id:"rack",type:"rack",label:"Estenedor de paret",x:RW,z:60,rot:-90},
-    {id:"sortera",type:"sortera",label:"Cubell de reciclatge SORTERA",x:129,z:132,rot:180},
+    {id:"broom",type:"broom",label:"Penja-escombres",x:RW,z:116,rot:-90},
+    {id:"basket",type:"basketOld",label:"Cistell de roba (el que ja teniu)",x:128,z:134,rot:0},
     {id:"rug",type:"rug",label:"Catifa ALSTERN",x:122,z:85,rot:0},
     {id:"hooks",type:"hooks",label:"Penjador RAGGBERG",x:136,z:RD,rot:180},
-    {id:"frame",type:"frame",label:"Làmina amb marc de pi",x:29.5,z:0,rot:0}
+    {id:"frame",type:"frame",label:"Làmina amb marc de pi",x:RW,z:55,rot:-90}
   ]
 };
 const WALLMOUNT={broom:1,rack:1,hooks:1,frame:1};
-const KEY="safareig3d-v2";let layoutName="proposta",items=[],view="persp";
+const KEY="safareig3d-v3";let layoutName="proposta",items=[],view="persp";
 const objGroup=new THREE.Group();scene.add(objGroup);
 function loadSaved(){try{return JSON.parse(localStorage.getItem(KEY)||"{}");}catch(e){return{};}}
 function persist(){try{const s=loadSaved();s[layoutName]=items.map(({g,size,...r})=>r);localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
