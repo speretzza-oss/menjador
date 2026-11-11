@@ -119,6 +119,9 @@ if(ok){try{localStorage.setItem("menjador-ok","1")}catch(_){}document.documentEl
     <div class="group" role="group" aria-label="Televisor">
       <span class="lbl">TV</span>
       <button data-tv="lg" aria-pressed="true">LG OLED 42"</button>
+      <button data-tv="s90f" aria-pressed="false">Samsung OLED 42"</button>
+      <button data-tv="qn90f" aria-pressed="false">Samsung Neo QLED 43"</button>
+      <button data-tv="frame" aria-pressed="false">The Frame 43"</button>
       <button data-tv="tcl" aria-pressed="false">TCL 43"</button>
     </div>
     <div class="group" role="group" aria-label="Moble seleccionat">
@@ -157,7 +160,7 @@ if(ok){try{localStorage.setItem("menjador-ok","1")}catch(_){}document.documentEl
       <ul class="note">
         <li>Mateixa distribució que «Sofà davant del foc», però la TV va penjada sobre la llar de foc, amb el centre a uns 145 cm de terra i un prestatge a sota que desvia la calor.</li>
         <li>L'aparador es queda sencer i al lloc de sempre, a la paret de la finestra lateral, al costat de la taula. L'obertura de la cuina queda lliure del tot.</li>
-        <li>La TV fa uns 97 cm d'ample i el caixó 78 cm: sobresurt uns 10 cm per cada banda.</li>
+        <li>El caixó fa 103 cm d'ample: una TV de 42–43" hi cap sense sobresortir.</li>
         <li>Abans, cal comprovar la temperatura de la paret amb el foc encès i resoldre la taca de fum.</li>
       </ul>
       <h2>Sofà al fons</h2>
@@ -200,11 +203,17 @@ if(ok){try{localStorage.setItem("menjador-ok","1")}catch(_){}document.documentEl
 if(!window.THREE||!THREE.OrbitControls){document.getElementById("err").hidden=false;return;}
 // Plan in cm: x across (0 = hallway-door wall, 380 = side-window wall); z along (0 = back-window wall, 570 = kitchen line).
 const RW=380,RD=570,WH=260;
-const BOX={x0:282,x1:380,z0:530,z1:634,niche:20};
-const FIRE={x:BOX.x0+15+29,z:BOX.z0};
+// Chimney breast: 103 cm wide (measured by the owner on 11/11/2026). The insert stays where it was (x 297–355).
+const BOX={x0:277,x1:380,z0:530,z1:634,niche:0.01};
+const BOXW=BOX.x1-BOX.x0;
+const FIRE={x:326,z:BOX.z0};
 const BEAM={x:195,z:340};
 // TVs still in the running (dimensions without stand, cm)
-const TVM={lg:{label:'LG OLED C5 42"',w:93.2,h:54.0,d:4.1,bezel:.6},tcl:{label:"TCL 43P7K",w:95.6,h:55.9,d:7.2,bezel:1.0,chin:1.2}};
+const TVM={lg:{label:'LG OLED C5 42"',w:93.2,h:54.0,d:4.1,bezel:.6},
+  s90f:{label:'Samsung S90F 42"',w:93.4,h:54.3,d:4.0,bezel:.6},
+  qn90f:{label:'Samsung QN90F 43"',w:96.1,h:55.9,d:2.7,bezel:.7},
+  frame:{label:'Samsung The Frame 43"',w:97.0,h:55.9,d:2.5,bezel:4.5},
+  tcl:{label:"TCL 43P7K",w:95.6,h:55.9,d:7.2,bezel:1.0,chin:1.2}};
 let tvSel="lg";
 const PI=Math.PI,D2R=PI/180;
 
@@ -622,7 +631,8 @@ function update(){
   document.getElementById("hFire").innerHTML="Sofà→foc <b>"+dist(seat,f)+"</b>";
   const hm=document.getElementById("hModel");
   if(t.type==="tvWall"){const m=TVM[tvSel];hm.hidden=false;
-    hm.innerHTML=m.label+" <b>"+String(m.w).replace(".",",")+" cm · sobresurt "+((m.w-78)/2).toFixed(1).replace(".",",")+" cm/costat</b>";}
+    const side=(m.w-BOXW)/2,fmt=v=>Math.abs(v).toFixed(1).replace(".",",");
+    hm.innerHTML=m.label+" <b>"+String(m.w).replace(".",",")+" cm · "+(side>0?"sobresurt "+fmt(side):"marge de "+fmt(side))+" cm/costat</b>";}
   else hm.hidden=true;
 }
 
