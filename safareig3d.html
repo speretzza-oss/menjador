@@ -219,6 +219,13 @@ const B={
     const cg=new THREE.PlaneGeometry(56,150,28,1);const pos=cg.attributes.position;for(let i=0;i<pos.count;i++)pos.setZ(i,Math.sin(pos.getX(i)/2.6)*1.6);cg.computeVertexNormals();
     const cur=add(g,cg,mat(0xf6f4ef,{side:THREE.DoubleSide,roughness:1}),-15,89,26);cur.castShadow=false;
     return{w:89,d:50};},
+  branas(g){cyl(g,20.5,20,60,mat(0xffffff,{map:TEX.wicker,roughness:1}),0,30,0,null,4).rotation.y=PI/4;box(g,37,8,37,0xf3efe6,0,58,0,{roughness:1});return{w:41,d:41};},
+  cleanBasket(g){const w=mat(0xffffff,{map:TEX.wicker,roughness:1});box(g,48,16,36,w,0,173.5+8,0);box(g,44,4,32,0xeae4d8,0,173.5+15,0,{roughness:1});return{w:48,d:36};},
+  sisi(g){const m=mat(0xd9dcdc,{metalness:.5,roughness:.35});const H=120,D=60;
+    for(const z of[-D/2,D/2])box(g,1.6,H,1.6,m,0,45+H/2,z);for(const y of[45,45+H])box(g,1.6,1.6,D,m,0,y,0);
+    for(let i=1;i<14;i++)box(g,.6,.6,D-3,m,(i%2?1.6:-1.6),45+i*8,0);
+    for(const z of[-D/2+8,D/2-8]){const hk=add(g,new THREE.TorusGeometry(2,.35,6,12,PI*1.4),mat(0xbfbfbf,{metalness:.8}),0,45+H+3,z);hk.rotation.y=PI/2;}
+    return{w:6,d:55};},
   rug(g){rbox(g,80,1,50,.4,0x4a4a48,0,.5,0,{roughness:1});return{w:80,d:50};},
   hooks(g){const pine=mat(0xffffff,{map:TEX.pine});box(g,40,9,2,pine,0,150,1);box(g,40,1.6,17,pine,0,155,8.5);for(let i=0;i<4;i++){box(g,1.4,6,1.4,0x1d1d1d,-15+i*10,146,4);}
     box(g,12,28,1,0xf2f2ee,-15,134,5,{roughness:1});box(g,10,24,1,0x8a8f8c,5,136,5,{roughness:1});return{w:40,d:17};},
@@ -235,18 +242,19 @@ const LAYOUTS={
   ],
   proposta:[
     {id:"station",type:"station",label:"Estació de reciclatge IVAR amb cortina",x:44.5,z:25,rot:0},
-    {id:"washer",type:"washer",label:"Rentadora Hisense WF3S9043BW3",x:132,z:28,rot:0},
-    {id:"dryer",type:"dryer",label:"Secadora Hisense DHQE800BW2 (més endavant)",x:132,z:28,rot:0},
+    {id:"washer",type:"washer",label:"Rentadora Hisense WF3S9043BW3",x:135,z:28,rot:0},
+    {id:"sisi",type:"sisi",label:"Estenedor plegable (120 × 60 × 5 cm) penjat a l'escletxa",x:97,z:33,rot:0},
+    {id:"dryer",type:"dryer",label:"Secadora Hisense DHQE800BW2 (més endavant)",x:135,z:28,rot:0},
     {id:"ivar",type:"ivar",label:"Rebost IVAR amb portes",x:15,z:97,rot:90},
-    {id:"broom",type:"broom",label:"Penja-escombres",x:RW,z:116,rot:-90},
-    {id:"basket",type:"basketOld",label:"Cistell de roba (el que ja teniu)",x:128,z:134,rot:0},
+    {id:"broom",type:"broom",label:"Penja-escombres",x:RW,z:76,rot:-90},
+    {id:"hamper",type:"branas",label:"Cistell de roba bruta BRANÄS",x:127,z:134,rot:0},
+    {id:"clean",type:"cleanBasket",label:"Cistell de roba neta (el de vímet que ja teniu)",x:135,z:28,rot:0},
     {id:"rug",type:"rug",label:"Catifa ALSTERN",x:122,z:85,rot:0},
-    {id:"hooks",type:"hooks",label:"Penjador RAGGBERG",x:136,z:RD,rot:180},
-    {id:"frame",type:"frame",label:"Làmina amb marc de pi",x:RW,z:55,rot:-90}
+    {id:"hooks",type:"hooks",label:"Penjador RAGGBERG",x:136,z:RD,rot:180}
   ]
 };
 const WALLMOUNT={broom:1,rack:1,hooks:1,frame:1};
-const KEY="safareig3d-v3";let layoutName="proposta",items=[],view="persp";
+const KEY="safareig3d-v6";let layoutName="proposta",items=[],view="persp";
 const objGroup=new THREE.Group();scene.add(objGroup);
 function loadSaved(){try{return JSON.parse(localStorage.getItem(KEY)||"{}");}catch(e){return{};}}
 function persist(){try{const s=loadSaved();s[layoutName]=items.map(({g,size,...r})=>r);localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
